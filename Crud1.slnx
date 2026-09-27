@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="crud/crud.csproj" />
+  <Project Path="crudapi/crudapi.csproj" />
+</Solution>

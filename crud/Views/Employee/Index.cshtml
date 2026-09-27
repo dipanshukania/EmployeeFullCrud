@@ -1,0 +1,52 @@
+﻿@model List<crudapi.Models.TblEmployee>
+@{
+    ViewData["Ttile"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="col-md-4">
+        <a href="/Employee/AddEdit" class="btn btn-primary">Add Employees</a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Employee Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Salary</th>
+                <th>Gender</th>
+                <th>Description</th>
+                <th>Is Active</th>
+                <th>Department Id</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+             @foreach(var item in Model)
+                {
+                    <tr>
+               
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>@item.Email</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Salary</td>
+                            <td>@item.Gender</td>
+                            <td>@item.Description</td>
+                            <td>@item.IsActive</td>
+                            <td>@item.DepartmentId</td>
+                            <td>
+                                <a href="/Employee/AddEdit?EmployeeId=@item.Id" class ="btn btn-primary">Edit</a>
+                                <a href="" onclick="DeleteEmployee(@item.Id)" class ="btn btn-secondary">Delete</a>
+                            </td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts{
+    <script src="~/js/Employee.js"></script>
+}

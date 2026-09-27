@@ -1,0 +1,36 @@
+﻿@model List<crudapi.Models.TblDepartment>
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+<h2>@ViewData["Title"]</h2>
+
+<div class="container">
+    <div class="col-md-4">
+        <a href="/Department/AddEdit" class="btn btn-primary">Add Department</a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Department Id</th>
+                <th>Department Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <td>@item.DepartmentId</td>
+                <td>@item.DepartmentName</td>
+                <td>
+                    <a href="/Department/AddEdit?DepartmentId=@item.DepartmentId" class="btn btn-secondary">Edit</a>
+                    <a href="" onclick="DeleteDepartment(@item.DepartmentId)" class="btn btn-secondary">Delete</a>
+                </td>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts{
+     <script src="~/js/Department.js"></script>
+}

@@ -1,0 +1,79 @@
+﻿@model crudapi.Models.TblEmployee
+@{
+    ViewData["Title"] = "Add/Edit Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <form id="EmployeeForm">
+        <input type="hidden" id="Id"  value="@(Model?.Id ?? 0)" />
+        <div class="form-group">
+            <label for="Name">Name</label>
+            <input type="text" id="Name" name="Name" class="form-control" placeholder="Enter name" value="@Model?.Name" />
+        </div>
+        <div class="form-group">
+            <label for="Email">Email</label>
+              <input type="text" id="Email" name="Email" class="form-control" placeholder="Enter Email" value="@Model?.Email" />
+        </div>
+        <div class="form-group">
+            <label for="Phone">Phone</label>
+              <input type="number" id="Phone" name="Phone" class="form-control" placeholder="Enter Phone" value="@Model?.Phone" />
+        </div>
+         <div class="form-group">
+            <label for="Salary">Salary</label>
+              <input type="number" id="Salary" name="Salary" class="form-control" placeholder="Enter Salary" value="@Model?.Salary" />
+        </div>
+         <div class="form-group">
+            <label>Gender</label>
+            <div>
+                <input type="radio" id="Male"  name ="Gender" value="Male" @(Model != null && Model.Gender == "Male" ? "checked" : "") />
+                    <label for="Male">Male</label>
+            </div>
+             <div>
+                <input type="radio" id="Female"  name ="Gender" value="Female"  @(Model != null && Model.Gender == "Female" ? "checked" : "")/>
+                    <label for="Female">Female</label>
+            </div>
+           </div>
+            
+        <div class ="form-group">
+              <label for="DepartmentId">Department</label>
+                   <select id="DepartmentId" name="DepartmentId" class="form-control">
+                        <option value="">Select Department</option>
+
+                        @foreach (var item in ViewBag.Department)
+                        {
+                            if (Model != null && item.DepartmentId == Model.DepartmentId)
+                            {
+                                <option value="@item.DepartmentId" selected>
+                                    @item.DepartmentName
+                                </option>
+                            }
+                            else
+                            {
+                                <option value="@item.DepartmentId">
+                                    @item.DepartmentName
+                                </option>
+                            }
+                        }
+                    </select>
+        </div>
+        <div class="form-group">
+                <label for="Description">Description</label>
+
+                <textarea id="Description"
+                          name="Description"
+                          class="form-control"
+                          placeholder="Enter Description">@Model?.Description</textarea>
+            </div>
+        <div class="form-group">
+              <label for="IsActive">Is Active</label>
+              <input type="checkbox" id="IsActive" name="IsActive" value="true"@(Model?.IsActive == true ? "checked" : "") />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Employee</button>
+        <a href="/Employee" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+@section Scripts{
+    <script src="~/js/Employee.js"></script>
+}
